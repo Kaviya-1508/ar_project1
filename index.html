@@ -13,23 +13,14 @@
         <!-- Marker -->
         <a-marker preset="hiro">
 
-<<<<<<< HEAD
             <!-- Sphere -->
-            <a-entity id="ball" geometry="primitive: sphere; radius: 0.4" material="color: blue" position="0 0.5 0"
-                animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
-            </a-entity>
-
-            <!-- Score Text -->
-            <a-text id="scoreText" value="Score: 0" position="0 1.3 0" align="center" color="yellow">
-            </a-text>
-=======
-            <!-- 3D Object -->
-               <a-text value="Kavi" position="0 1 0" align="center" color="yellow"></a-text>
->>>>>>> 34c28316cdf9783f485ac82db0cd3594b8f170cd
+            <a-sphere position="0 0.5 0" radius="0.5" color="blue"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000">
+            </a-sphere>
 
         </a-marker>
 
-        <!-- Camera with click detection -->
+        <!-- Camera (needed for clicks) -->
         <a-entity camera cursor="rayOrigin: mouse"></a-entity>
 
     </a-scene>
@@ -37,20 +28,19 @@
     <script>
 
         let score = 0;
-        let ball = document.querySelector("#ball");
-        let text = document.querySelector("#scoreText");
+        let sphere = document.querySelector("a-sphere");
 
-        ball.addEventListener("click", () => {
+        sphere.addEventListener("click", () => {
 
             score++;
-            text.setAttribute("value", "Score: " + score);
+            console.log("Score:", score);
 
-            // random new position
+            // random position
             let x = (Math.random() * 2 - 1).toFixed(2);
             let y = (Math.random() * 1 + 0.3).toFixed(2);
             let z = (Math.random() * 2 - 1).toFixed(2);
 
-            ball.setAttribute("position", `${x} ${y} ${z}`);
+            sphere.setAttribute("position", `${x} ${y} ${z}`);
 
         });
 
